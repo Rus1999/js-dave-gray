@@ -1,10 +1,7 @@
-// function declaration syntax;
-
-function add2Num(num1, num2)
+function getUserNameFromEmail(email)
 {
-  console.log(`Numeric 1: ${num1}`);
-  console.log(`Numeric 2: ${num2}`);
-  return num1 + num2;
+  return email.slice(0, email.indexOf("@"));
 }
 
-console.log(add2Num(3, 7));
+console.log("Input email: Punyarit07@gmail.com");
+console.log(getUserNameFromEmail("Punyarit07@gmail.com"));
