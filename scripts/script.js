@@ -1,6 +1,9 @@
-let name = "Punyarit";
-
-for (let i = 0; i <= name.length; i++)
+let counter = 0;
+let myLetter;
+while (true)
 {
-  console.log(name.charAt(i));
+  myLetter = name[counter];
+  console.log(myLetter);
+  if (myLetter === "v") break;
+  counter++;
 }
