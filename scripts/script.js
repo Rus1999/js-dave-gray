@@ -1,13 +1,16 @@
-const getUserNameFromEmail = (email) =>
-{
-  return email.slice(0, email.indexOf("@"));
-}
+const myArray = [];
 
-console.log("Input email: Punyarit07@gmail.com");
-console.log(getUserNameFromEmail("Punyarit07@gmail.com"));
+myArray[0] = "Rus";
+myArray[1] = 1001;
+myArray[2] = false;
+myArray[3] = 'a';
 
-console.log("Input email: Punyarit_rus@hotmail.com");
-console.log(getUserNameFromEmail("Punyarit_rus@hotmail.com"));
+myArray.unshift("unshift"); // add element to the 
+myArray.push("push");
+console.log(`Unshift and Push \n`)
+console.log(myArray);
 
-console.log("Input email: PunyaritKlaphachon@github.com");
-console.log(getUserNameFromEmail("PunyaritKlaphachon@github.com"));
+myArray.shift();
+myArray.pop();
+console.log('Shift and Pop');
+console.log(myArray);
