@@ -1,16 +1,42 @@
-const myArray = [];
+let playGame = confirm("Shall we play a game of death.");
 
-myArray[0] = "Rus";
-myArray[1] = 1001;
-myArray[2] = false;
-myArray[3] = 'a';
+if (playGame) {
+  while (playGame) {
+    const playerChoice = prompt("Please enter rock | paper | scissors");
+    if (playerChoice || playerChoice === "") {
+      const playerOne = playerChoice.trim().toLowerCase();
+      if (playerOne === "rock" || playerOne === "paper" || playerOne === "scissors") {
+        const computerChoice = Math.floor(Math.random() * 3);
+        const rpsArray = ["rock", "paper", "scissors"];
+        const computer = rpsArray[computerChoice];
 
-myArray.unshift("unshift"); // add element to the 
-myArray.push("push");
-console.log(`Unshift and Push \n`)
-console.log(myArray);
+        const result = playerOne === computer
+          ? "Tie game!"
+          : playerOne === "rock" && computer === "paper"
+            ? `playerOne: ${playerOne}\nComputer: ${computer}\nComputer wins!`
+            : playerOne === "paper" && computer === "scissors"
+              ? `playerOne: ${playerOne}\nComputer: ${computer}\nComputer wins!`
+              : playerOne === "scissors" && computer === "rock"
+                ? `playerOne: ${playerOne}\nComputer: ${computer}\nComputer wins!`
+                : `playerOne: ${playerOne}\nComputer: ${computer}\nPlayerOne wins!`;
 
-myArray.shift();
-myArray.pop();
-console.log('Shift and Pop');
-console.log(myArray);
+        alert(result);
+
+        playGame = confirm("Play Again?");
+        if (!playGame) alert("Ok, thanks for playing.");
+        continue;
+      }
+      else {
+        alert("You didn't provide the valid choice.");
+        continue;
+      }
+    }
+    else {
+      alert("Ok never mind see you again.");
+      break;
+    }
+  }
+}
+else {
+  alert("OK, see you again soon.");
+} 
