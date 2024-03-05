@@ -1,31 +1,40 @@
-const band = {
-  vocals: "Robert Plant",
-  guitar: "Jimmy Page",
-  bass: "John Paul Jones",
-  drums: "John Bonham"
-};
+class Pizza {
+  constructor (pizzaType, pizzaSize){
+    this.type = pizzaType;
+    this.size = pizzaSize;
+    this.crust = "original";
+    this.toppings = [];
+  };
 
-delete band.drums;
-console.log(band.hasOwnProperty("drums"));
-band.drums = "John Bonham";
+  getCrust() {
+    return this.crust;
+  }
 
-console.log(Object.keys(band));
-console.log(Object.values(band));
+  setCrust(pizzaCrust) {
+    this.crust = pizzaCrust;
+  }
 
-for (let job in band) {
-  console.log(`On ${job}, it's ${band[job]}`);
+  getToppings() {
+    return this.toppings;
+  }
+
+  setToppings(topping) {
+    this.toppings.push(topping);
+  }
+
+  bake() {
+    console.log(`Baking a ${this.size} ${this.type} ${this.crust} crust pizza.`);
+  };
 }
 
-// const { guitar: myVariable, bass: myBass } = band; // get value from key
-// console.log(myVariable);
-// console.log(myBass);
+const myPizza = new Pizza("havaian", "small");
+myPizza.setCrust("thin");
+myPizza.setToppings("sausage");
+myPizza.setToppings("olives");
+myPizza.bake();
+console.log(myPizza.getToppings());
 
-// {
-  const { bass } = band; // get value from key
-  console.log(bass);
-// }
+const currentTimeMs = new Date().getTime();
+const currentTimeDate = new Date(currentTimeMs);
 
-function sings({ vocals, guitar, bass, drums }) {
-  return `${vocals} sings! \n${guitar} lead! \n${bass} pick!\n${drums} fucking hit!`;
-};
-console.log(sings(band)); // pass the whole object then use what to use inside the object
+console.log(currentTimeDate);
