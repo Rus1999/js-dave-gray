@@ -1,29 +1,19 @@
-// objects
-const myObj = {
-  name : "Punyarit",
-  nickName : "Rus"
+const vehicle = {
+  wheels : 4,
+  engine : () => {
+    return "Vrroooom!";
+  }
 }
 
-console.log(myObj);
-console.log(myObj.name);
+const car = Object.create(vehicle);
+car.doors = 7;
+car.engine = () => { return "Whoooosh! " }
+console.log(car.doors);
+console.log(car.engine());
 
-const secObj = {
-  alive : true,
-  answer : 42,
-  hobbies : ["Eat", "Sleep", "Code"],
-  beverage : {
-    morning : "Coffee",
-    afternoon : "Milk",
-    evening : "Weed water"
-  },
-  action : function() {
-    return `Time for ${this.hobbies[2]}`;
-  }
-};
-
-console.log(secObj.alive);
-console.log(secObj.hobbies[1]);
-console.log(secObj["beverage"]);
-console.log(secObj.beverage.morning);
-console.log(secObj.beverage["morning"]);
-console.log(secObj.action());
+const testla = Object.create(car);
+console.log(testla.wheels);
+console.log(testla.doors);
+console.log(testla.engine());
+testla.engine = () => { return "Shhhh....." }
+console.log(testla.engine());
