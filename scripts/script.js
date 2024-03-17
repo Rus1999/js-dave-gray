@@ -1,31 +1,28 @@
-// event lisenter
-// addEventListener(event, function, useCapture)
+// web storage API
 
-const doSomething = () => {
-  alert("doing something");
-}
+// window.alert("Window API");
+// console.log(window.location);
 
-// h2.addEventListener("click", doSomething, false);
-// h2.removeEventListener("click", doSomething, false);
-
-// anonymous function can't be remove
-// h2.addEventListener("click", (e) => {
-//   console.log(e.target);
-//   e.target.textContent = "Clicked";
-// }, false);
-
-document.addEventListener("readystatechange", (e) => {
-  if (e.target.readyState === "complete") {
-    console.log("readyState: complete");
-    initApp();
+const myArr = ['eat', 'sleep', 'code'];
+const myObj = {
+  name: "Rus",
+  hobbies: ['eat', 'sleep', 'code'],
+  logName: function() {
+    console.log(this.name);
   }
-}, false);
-
-const initApp = () => {
-  const view3 = document.querySelector("#view3");
-  const myForm = view3.querySelector("#myForm");
-  myForm.addEventListener("submit", (e) => {
-    e.preventDefault(); // prevent form to reload by defaul
-    console.log("Submit Event.");
-  })
 };
+
+
+myObj.logName();
+
+sessionStorage.setItem("mySessionStore", JSON.stringify(myArr));
+const mySessionData = JSON.parse(sessionStorage.getItem("mySessionStore"));
+console.log(mySessionData);
+
+localStorage.setItem("myLocalStore", JSON.stringify(myObj));
+const localStorageKey = localStorage.key(0);
+const localStorageLength = localStorage.length;
+localStorage.removeItem("myLocalStore");
+localStorage.clear();
+const myLocalData = JSON.parse(localStorage.getItem("myLocalStore"));
+console.log(localStorageLength);
