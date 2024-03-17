@@ -1,18 +1,17 @@
-// import playGuitar from "./guitars.js";
-// import { shredding as shred, plucking as fingerpicking} from "./guitars.js";
+import { posts } from "./posts.js";
 
-// console.log(playGuitar());
-// console.log(shred());
-// console.log(fingerpicking());
+posts.forEach(post => {
+  console.log(post);
+});
+console.clear();
 
+const filteredPosts = posts.filter(post => {
+  return post.userId === 7;
+});
+console.log(filteredPosts);
+console.clear();
 
-import * as Guitars from "./guitars.js";
-import User from "./user.js";
-
-console.log(Guitars.default()); // when import all it good to change the default to something else
-console.log(Guitars.shredding());
-console.log(Guitars.plucking());
-
-const me = new User("rus@co.ru", "Rus");
-console.log(me);
-console.log(me.greeting());
+const mappedPosts = filteredPosts.map(post => {
+  return post.id * 10;
+})
+console.log(mappedPosts);
