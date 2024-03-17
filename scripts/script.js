@@ -1,54 +1,55 @@
-"use strict";
+// DOM - Document Object Model
 
-const variable = "Rus";
-console.log(variable);
+const view1 = document.getElementById("view1");
+console.log(view1);
 
-const name = "Punyarit";
+const view2 = document.querySelector("#view2");
+console.log(view2);
 
-const makeError = () => {
-  let i = 0;
+view1.style.display = "flex";
+view2.style.display = "none";
 
-  while (i <= 5) {
-    try {
-      // const name2 = "Rus";
-      // name2 = "punyarit";
+const views = document.getElementsByClassName("view");
+console.log(views);
+const sameViews = document.querySelectorAll(".view");
+console.log(sameViews);
 
-      // throw new customError("This is a custom error!");
+const divs = view1.querySelectorAll("div");
+console.log(divs);
+const sameDivs = view1.getElementsByTagName("div");
+console.log(sameDivs);
 
-      // throw new Error("This is a genetic eror");
+const evenDivs = view1.querySelectorAll("div:nth-of-type(2n)");
+console.log(evenDivs);
 
-      if (i % 2 !== 0) {
-        throw new Error("Odd number!"); // throw an error then skip to the catch block
-      }
+for (let i = 0; i < evenDivs.length; i++){
+  evenDivs[i].style.backgroundColor = "darkblue";
+  // evenDivs[i].style.width = "200px";
+  // evenDivs[i].style.height = "200px";
+}
 
-      console.log("Even number");
-    } catch (err) { // only execute when error occurs
-      // console.log(err);
-      // console.error(err);
-      // console.warn(err);
-      // console.table(err);
-      // console.error(err.name);
-      // console.error(err.message);
-      // console.error(err.stack);
-      // logTheError(err.stack); // record the log 
+const navText = document.querySelector("nav h1");
+console.log(navText);
+navText.textContent = "P. Klaphachon";
 
-      // console.error(err.name);
-      // console.error(err.message);
-      console.error(err.stack);
-    } finally {
-      // execute no matter what
-      // console.log("WOWZAA!");
-      console.log("FINALLY");
-      i++;
-    }
-  }
-};
+const navbar = document.querySelector("nav");
+navbar.innerHTML = `<h1>WOWZAA</h1> <p> This should align right</p>`;
 
-makeError();
+console.log(navbar);
+navbar.style.justifyContent = "space-between";
+
+console.log(evenDivs[0]);
+console.log(evenDivs[0].parentElement);
+console.log(evenDivs[0].parentElement.children);
+console.log(evenDivs[0].parentElement.childNodes);
+console.log(evenDivs[0].parentElement.hasChildNodes());
+console.log(evenDivs[0].parentElement.lastChild);
+console.log(evenDivs[0].parentElement.lastElementChild);
+console.log(evenDivs[0].parentElement.firstChild);
+console.log(evenDivs[0].parentElement.firstElementChild);
+console.log(evenDivs[0].nextSibling);
+console.log(evenDivs[0].nextElementSibling);
+console.log(evenDivs[0].previousSibling);
+console.log(evenDivs[0].previousElementSibling);
 
 
-const customError = (message) => {
-  this.message = message;
-  this.name = "customError";
-  this.stack = `${this.name}: ${this.message}`;
-};
