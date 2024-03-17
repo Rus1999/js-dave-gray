@@ -1,28 +1,18 @@
-// web storage API
+// import playGuitar from "./guitars.js";
+// import { shredding as shred, plucking as fingerpicking} from "./guitars.js";
 
-// window.alert("Window API");
-// console.log(window.location);
-
-const myArr = ['eat', 'sleep', 'code'];
-const myObj = {
-  name: "Rus",
-  hobbies: ['eat', 'sleep', 'code'],
-  logName: function() {
-    console.log(this.name);
-  }
-};
+// console.log(playGuitar());
+// console.log(shred());
+// console.log(fingerpicking());
 
 
-myObj.logName();
+import * as Guitars from "./guitars.js";
+import User from "./user.js";
 
-sessionStorage.setItem("mySessionStore", JSON.stringify(myArr));
-const mySessionData = JSON.parse(sessionStorage.getItem("mySessionStore"));
-console.log(mySessionData);
+console.log(Guitars.default()); // when import all it good to change the default to something else
+console.log(Guitars.shredding());
+console.log(Guitars.plucking());
 
-localStorage.setItem("myLocalStore", JSON.stringify(myObj));
-const localStorageKey = localStorage.key(0);
-const localStorageLength = localStorage.length;
-localStorage.removeItem("myLocalStore");
-localStorage.clear();
-const myLocalData = JSON.parse(localStorage.getItem("myLocalStore"));
-console.log(localStorageLength);
+const me = new User("rus@co.ru", "Rus");
+console.log(me);
+console.log(me.greeting());
