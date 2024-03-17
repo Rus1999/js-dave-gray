@@ -1,80 +1,70 @@
-// DOM - Document Object Model
+// event lisenter
+// addEventListener(event, function, useCapture)
 
-const view1 = document.getElementById("view1");
-console.log(view1);
-
-const view2 = document.querySelector("#view2");
-console.log(view2);
-
-view1.style.display = "flex";
-view2.style.display = "none";
-
-const views = document.getElementsByClassName("view");
-console.log(views);
-const sameViews = document.querySelectorAll(".view");
-console.log(sameViews);
-
-const divs = view1.querySelectorAll("div");
-console.log(divs);
-const sameDivs = view1.getElementsByTagName("div");
-console.log(sameDivs);
-
-const evenDivs = view1.querySelectorAll("div:nth-of-type(2n)");
-console.log(evenDivs);
-
-for (let i = 0; i < evenDivs.length; i++){
-  evenDivs[i].style.backgroundColor = "darkblue";
-  // evenDivs[i].style.width = "200px";
-  // evenDivs[i].style.height = "200px";
+const doSomething = () => {
+  alert("doing something");
 }
 
-const navText = document.querySelector("nav h1");
-console.log(navText);
-navText.textContent = "P. Klaphachon";
+// h2.addEventListener("click", doSomething, false);
+// h2.removeEventListener("click", doSomething, false);
 
-const navbar = document.querySelector("nav");
-navbar.innerHTML = `<h1>WOWZAA</h1> <p> This should align right</p>`;
+// anonymous function can't be remove
+// h2.addEventListener("click", (e) => {
+//   console.log(e.target);
+//   e.target.textContent = "Clicked";
+// }, false);
 
-console.log(navbar);
-navbar.style.justifyContent = "space-between";
+document.addEventListener("readystatechange", (e) => {
+  if (e.target.readyState === "complete") {
+    console.log("readyState: complete");
+    initApp();
+  }
+}, false);
 
-console.log(evenDivs[0]);
-console.log(evenDivs[0].parentElement);
-console.log(evenDivs[0].parentElement.children);
-console.log(evenDivs[0].parentElement.childNodes);
-console.log(evenDivs[0].parentElement.hasChildNodes());
-console.log(evenDivs[0].parentElement.lastChild);
-console.log(evenDivs[0].parentElement.lastElementChild);
-console.log(evenDivs[0].parentElement.firstChild);
-console.log(evenDivs[0].parentElement.firstElementChild);
-console.log(evenDivs[0].nextSibling);
-console.log(evenDivs[0].nextElementSibling);
-console.log(evenDivs[0].previousSibling);
-console.log(evenDivs[0].previousElementSibling);
+const initApp = () => {
+  const view = document.querySelector("#view2");
+  const div = view.querySelector("div");
+  const h2 = div.querySelector("h2");
 
-view1.style.display = "none";
-view2.style.display = "flex";
-view2.style.flexDirection = "row";
-view2.style.flexWrap = "wrap";
-view2.style.margin = "10px";
+  // if useCapture is false then it will propagate from inside out
+  // if it's true then it will outside in
+  view.addEventListener("click", (e) => {
+    view.classList.toggle("purple");
+    view.classList.toggle("darkblue");
+  }, false);
 
-while (view2.lastChild) { // while having a last child
-  view2.lastChild.remove(); // remove node
-}
+  div.addEventListener("click", (e) => {
+    div.classList.toggle("blue");
+    div.classList.toggle("black");
+  }, false);
 
-const createDivs = (parent, iter) => {
-  const newDiv = document.createElement("div");
-  newDiv.textContent = iter;
-  newDiv.style.backgroundColor = '#000';
-  newDiv.style.width = '100px';
-  newDiv.style.height = '100px';
-  newDiv.style.margin = '10px';
-  newDiv.style.display = 'flex';
-  newDiv.style.justifyContent = 'center'; // distribute space bwtween content items (main-axis(x))
-  newDiv.style.alignItems = 'center'; // alignment of items (cross axis(y))
-  parent.append(newDiv);
-}
+  h2.addEventListener("click", (e) => {
+    const myText = e.target.textContent;
+    myText === "My 2nd View"
+      ? e.target.textContent = "Clicked"
+      : e.target.textContent = "My 2nd View";
+  }, false);
 
-for (let i = 1; i <= 12; i++) {
-  createDivs(view2, i);
-}
+
+  // the event will propaget back up to the parent
+  // e.target is the element that we click
+  // view.addEventListener("click", (e) => {
+  //   e.target.style.backgroundColor = "purple";
+  // }, false);
+
+  // div.addEventListener("click", (e) => {
+  //   e.target.style.backgroundColor = "blue";
+  // }, false);
+
+  // h2.addEventListener("click", (e) => {
+  //   e.target.textContent = "clicked";
+  // }, false);
+
+  const nav = document.querySelector("nav");
+  nav.addEventListener("mouseover", (e) => {
+    e.target.classList.add("height100");
+  }, false);
+  nav.addEventListener("mouseout", (e) => {
+    e.target.classList.remove("height100");
+  }, false);
+};
