@@ -1,22 +1,6 @@
-import { posts } from "./posts.js";
+// calbacks
 
-posts.forEach(post => {
-  console.log(post);
-});
-console.clear();
-
-const filteredPosts = posts.filter(post => {
-  return post.userId === 7;
-});
-console.log(filteredPosts);
-console.clear();
-
-const mappedPosts = filteredPosts.map(post => {
-  return post.id * 10;
-});
-console.log(mappedPosts);
-
-const reducedPostsValue = mappedPosts.reduce((sum, post) => {
-  return sum + post;
-}) ;
-console.log(reducedPostsValue)
+function firstFunction(parameters, callback){
+  // do stuff
+  callback();
+}
