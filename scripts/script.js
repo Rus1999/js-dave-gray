@@ -1,21 +1,25 @@
-// fetch
+// Async / Await
 
-// const users = fetch("https://jsonplaceholder.typicode.com/users"); // promise by default
+const myUsers = {
+  userList: []
+}
 
-// pending
-// console.log(users);
+const myCoolFunction = async () => {
+  const response = await fetch("https://jsonplaceholder.typicode.com/users"); // wait till finish before continue on
+  const jsonUserData = await response.json();
+  // console.log(jsonUserData);
+  return jsonUserData;
+};
 
-const users = fetch("https://jsonplaceholder.typicode.com/users")
-  .then(response => {
-    return response.json();
-  })
-  .then(json => {
-    json.forEach(user => {
-      console.log(user);
-    })
-  })
-  .catch(err => {
-    console.stack(err);
-  });
+myCoolFunction();
 
-console.log(users);
+const anotherFunc = async () => {
+  const data = await myCoolFunction(); // wait for this async function to finish
+  // console.log(data);
+  myUsers.userList = data;
+  console.log(`UserList inside asyncFunc: `);
+  console.log(myUsers.userList);
+}
+
+anotherFunc();
+console.log(`UserList outside asyncFunc: ${myUsers.userList}`);
