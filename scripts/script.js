@@ -1,23 +1,23 @@
 // Async / Await
 // 2nd parameter of Fetch is a object
 
-const getDadJoke = async () => {
-  const response = await fetch("https://icanhazdadjoke.com", {
-      method: "GET",
+const jokeObj = {
+  id: "3EYLeVS7Me", 
+  joke: "I once lost a banana at court but then I appealed."
+}
+
+const postData = async (jokeObj) => {
+  const response = await fetch("https://httpbin.org/post", {
+      method: "POST",
       headers: {
-        Accept: "application/json"
-      }
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(jokeObj)
     });
 
-  if (response.status === 200) {
-    const jsonJokeData = await response.json();
-    console.log(jsonJokeData.joke);
-  } else {
-    console.log("Error!!!");
-  }
+  const jsonResponse = await response.json();
 
-  // const textJokeData = await response.text();
-  // console.log(textJokeData);
+  console.log(jsonResponse);
 };
 
-getDadJoke();
+postData(jokeObj);
