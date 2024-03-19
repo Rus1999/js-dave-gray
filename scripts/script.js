@@ -1,25 +1,23 @@
 // Async / Await
 
-const myUsers = {
-  userList: []
-}
-
-const myCoolFunction = async () => {
+const getAllUserEmails = async () => {
   const response = await fetch("https://jsonplaceholder.typicode.com/users"); // wait till finish before continue on
   const jsonUserData = await response.json();
-  // console.log(jsonUserData);
-  return jsonUserData;
+
+  const userEmailArray = jsonUserData.map(user => {
+    return user.email;
+  })
+
+  postToWebPage(userEmailArray); // didn't need to be aysnc bc data is aready loaded
+
+  return userEmailArray;
 };
 
-myCoolFunction();
-
-const anotherFunc = async () => {
-  const data = await myCoolFunction(); // wait for this async function to finish
-  // console.log(data);
-  myUsers.userList = data;
-  console.log(`UserList inside asyncFunc: `);
-  console.log(myUsers.userList);
+const postToWebPage = (data) => {
+  console.log(data);
 }
 
-anotherFunc();
-console.log(`UserList outside asyncFunc: ${myUsers.userList}`);
+// const userEmail = await getAllUserEmails();
+// console.log(userEmail);
+
+getAllUserEmails();
