@@ -1,23 +1,23 @@
 // Async / Await
+// 2nd parameter of Fetch is a object
 
-const getAllUserEmails = async () => {
-  const response = await fetch("https://jsonplaceholder.typicode.com/users"); // wait till finish before continue on
-  const jsonUserData = await response.json();
+const getDadJoke = async () => {
+  const response = await fetch("https://icanhazdadjoke.com", {
+      method: "GET",
+      headers: {
+        Accept: "application/json"
+      }
+    });
 
-  const userEmailArray = jsonUserData.map(user => {
-    return user.email;
-  })
+  if (response.status === 200) {
+    const jsonJokeData = await response.json();
+    console.log(jsonJokeData.joke);
+  } else {
+    console.log("Error!!!");
+  }
 
-  postToWebPage(userEmailArray); // didn't need to be aysnc bc data is aready loaded
-
-  return userEmailArray;
+  // const textJokeData = await response.text();
+  // console.log(textJokeData);
 };
 
-const postToWebPage = (data) => {
-  console.log(data);
-}
-
-// const userEmail = await getAllUserEmails();
-// console.log(userEmail);
-
-getAllUserEmails();
+getDadJoke();
