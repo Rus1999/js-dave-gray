@@ -1,38 +1,34 @@
-// Async / Await
-// 2nd parameter of Fetch is a object
+document.getElementById("phoneNum").addEventListener("input", (e) => {
+  const regex = /^\(?(\d{3})\)?[-. ]?(\d{3})[-. ]?(\d{4})$/g;
+  const input = document.getElementById("phoneNum");
+  const format = document.querySelector(".phoneFormat");
+  const phone = input.value;
+  const found = regex.test(phone);
+  if (!found && phone.length) {
+    input.classList.add("invalid");
+    format.classList.add("block");
+  } else {
+    input.classList.remove("invalid");
+    format.classList.remove("block");
+  }
+});
 
-// abstract into functions
+document.getElementById("phoneForm").addEventListener("submit", (e) => {
+  e.preventDefault(); // don't reload
+  const input = document.getElementById("phoneNum");
+  const regex = /[()-. ]/g;
+  const savedPhoneNum = input.value.replaceAll(regex, "");
+  console.log(savedPhoneNum);
+});
 
-// maybe from a form
-const getDataFromForm = () => {
-  const requestObj = {
-    lastName: "nathaniel"
-  };
-
-  return requestObj;
-}
-
-const buildRequestUrl = (requestData) => {
-  return `https://api.nationalize.io/?name=${requestData.lastName}`;
-}
-
-const requestJoke = async (url) => {
-  const response = await fetch(url);
-  const jsonResponse = await response.json();
-  const joke = jsonResponse;
-  postJokeToPage(joke);
-};
-
-const postJokeToPage = (joke) => {
-  console.log(joke);
-}
-
-// Procedural "workflow" function
-const processJokeRequest = async () => {
-  const requestData = getDataFromForm();
-  const requestUrl = buildRequestUrl(requestData);
-  await requestJoke(requestUrl);
-  console.log("finished!");
-}
-
-processJokeRequest();
+document.getElementById("textForm").addEventListener("submit", (e) => {
+  e.preventDefault();
+  const input = document.getElementById("textEntry");
+  const regex = / {2,}/g;
+  const newText = input.value.replaceAll(regex, " ").trim();
+  console.log(newText);
+  const encodedInputText = encodeURI(input.value);
+  const encodedCleanText = encodeURI(newText);
+  console.log(encodedInputText);
+  console.log(encodedCleanText);
+})
